@@ -8,5 +8,7 @@ dj-database-url
 drf-yasg
 python-dotenv
 gunicorn==20.1.0
+whitenoise==6.2.0
+Brotli==1.0.9
 celery
 celery[redis]
