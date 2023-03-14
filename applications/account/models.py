@@ -2,6 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(BaseUserManager):
@@ -58,32 +59,32 @@ class User(AbstractUser):
 
 
 class Profile(models.Model):
-    GENDER = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-    )
-    SEXUAL_ORIENTATION = (
-        ('HE', 'Heterosexual'),
-        ('BI', 'Bisexual'),
-        ('HO', 'Homosexual'),
-        ('AS', 'Asexual'),
-        ('PA', 'Pansexual'),
-        ('PO', 'Polisexual'),
-        ('QU', 'Queer'),
-        ('DE', 'Demisexual'),
-        ('ND', 'Not decide')
-    )
-    STATUS = (
-        ('LP', 'Long term partner'),
-        ('FR', 'Find a friend'),
-        ('HF', 'To have a fan'),
-        ('OD', 'One Date')
-    )
+    class Gender(models.TextChoices):
+        MALE = 'M', _('Male')
+        FEMALE = 'F', _('Female')
+
+    class SexualOrientation(models.TextChoices):
+        HETEROSEXUAL = 'HE', _('Heterosexual')
+        BISEXUAL = 'BI', _('Bisexual')
+        HOMOSEXUAL = 'HO', _('Homosexual')
+        ASEXUAL = 'AS', _('Asexual')
+        PANSEXUAL = 'PA', _('Pansexual')
+        POLISEXUAL = 'PO', _('Polisexual')
+        QUEER = 'QU', _('Queer')
+        DEMISEXUAL = 'DE', _('Demisexual')
+        NOT_DECIDE = 'ND', _('Not decide')
+
+    class Status(models.TextChoices):
+        LONG_TERM_PARTNER = 'LP', _('Long term partner')
+        FIND_A_FRIEND = 'FR', _('Find a friend')
+        TO_HAVE_A_FAN = 'HF', _('To have a fan')
+        ONE_DATE = 'OD', _('One Date')
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
-    gender = models.CharField(max_length=1, choices=GENDER)
-    sexual_orientation = models.CharField(max_length=2, choices=SEXUAL_ORIENTATION)
+    gender = models.CharField(max_length=1, choices=Gender.choices)
+    sexual_orientation = models.CharField(max_length=2, choices=SexualOrientation.choices)
     description = models.TextField(max_length=200)
-    status = models.CharField(max_length=2, choices=STATUS)
+    status = models.CharField(max_length=2, choices=Status.choices)
 
 
 class Image(models.Model):

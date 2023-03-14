@@ -6,5 +6,6 @@ psycopg2-binary
 python-decouple
 dj-database-url
 drf-yasg
+python-dotenv
 celery
 celery[redis]

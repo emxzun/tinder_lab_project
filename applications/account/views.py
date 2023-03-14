@@ -39,17 +39,6 @@ class ProfileAPIView(ModelViewSet):
     serializer_class = ProfileSerializer
     permission_classes = [IsAuthenticated]
 
-    def get(self, request, activation_code):
-        try:
-            user = User.objects.get(activation_code=activation_code)
-            user.is_active = True
-            user.is_mentor = True
-            user.activation_code = ''
-            user.save()
-            return user
-        except User.DoesNotExist:
-            return Response({'message': 'Неверный код'}, status=status.HTTP_400_BAD_REQUEST)
-
 
 class ForgotPasswordApiView(APIView):
     @staticmethod
