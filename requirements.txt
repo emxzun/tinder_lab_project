@@ -7,5 +7,6 @@ python-decouple
 dj-database-url
 drf-yasg
 python-dotenv
+gunicorn==20.1.0
 celery
 celery[redis]
