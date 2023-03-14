@@ -84,4 +84,8 @@ class Profile(models.Model):
     sexual_orientation = models.CharField(max_length=2, choices=SEXUAL_ORIENTATION)
     description = models.TextField(max_length=200)
     status = models.CharField(max_length=2, choices=STATUS)
+
+
+class Image(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='images/')

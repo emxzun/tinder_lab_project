@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from applications.account.models import Profile
+from applications.account.models import Profile, Image
 from applications.account.tasks import send_confirmation_email_celery, send_confirmation_code
 
 User = get_user_model()
@@ -20,7 +20,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         if p1 != p2:
             raise serializers.ValidationError('Пароли не совпадают!')
-
         return attrs
 
     def create(self, validated_data):
@@ -32,18 +31,28 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
+class ImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Image
+        fields = '__all__'
+
+
 class ProfileSerializer(serializers.ModelSerializer):
     user = serializers.EmailField(required=False)
+    images = ImageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Profile
-        fields = ['user', 'gender', 'sexual_orientation', 'description', 'status', 'image']
+        fields = ['user', 'images', 'gender', 'sexual_orientation', 'description', 'status']
 
     def create(self, validated_data):
         request = self.context.get('request')
         user = request.user
-
         profile = Profile.objects.create(user=user, **validated_data)
+        files_data = request.FILES
+        for image in files_data.getlist('images'):
+            Image.objects.create(profile=profile, image=image)
         return profile
 
 
