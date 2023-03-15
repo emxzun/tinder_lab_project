@@ -17,7 +17,8 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('swagger/', schema_view.with_ui('swagger')),
-    path('api/v1/account/', include('applications.account.urls'))
+    path('api/v1/account/', include('applications.account.urls')),
+    path('api/v1/chat', include('applications.chat.urls'))
 ]
 
 if settings.DEBUG:
