@@ -1,19 +1,26 @@
-from rest_framework.generics import CreateAPIView, UpdateAPIView
-from rest_framework import permissions
+from rest_framework.generics import CreateAPIView, UpdateAPIView, ListAPIView
+from rest_framework.views import APIView
+from django.contrib.auth import get_user_model
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from applications.likedislike.models import LikeDislike
 from applications.likedislike.serializers import LikeDislikeSerializer
 
-class LikeDislikeAPIView(CreateAPIView, UpdateAPIView):
+User = get_user_model()
+class LikeDislikeAPIView(APIView):
     serializer_class = LikeDislikeSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
+    
+    def get(self):
         user = self.request.user
-        return LikeDislike.objects.filter(user=user)
+        return LikeDislike.objects.filter(who_liked=user)
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    
+    def post(self, request):
+        serializer_class = LikeDislikeSerializer(data=request.data)
+        if serializer_class.is_valid:
+            serializer_class.save()
+            return Response(serializer_class.errors)
 
-    def perform_update(self, serializer):
-        serializer.save(user=self.request.user)
 
