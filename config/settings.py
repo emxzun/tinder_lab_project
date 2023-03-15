@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 
     #apps
     'applications.account',
-    'applications.likes',
+    'applications.likedislike',
     'applications.recommendations'
 ]
 
