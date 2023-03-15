@@ -1,26 +1,39 @@
 from rest_framework.generics import CreateAPIView, UpdateAPIView, ListAPIView
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 from django.contrib.auth import get_user_model
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from applications.likedislike.models import LikeDislike
 from applications.likedislike.serializers import LikeDislikeSerializer
 
-User = get_user_model()
 class LikeDislikeAPIView(APIView):
+    permission_classes = [AllowAny]
     serializer_class = LikeDislikeSerializer
-    permission_classes = [IsAuthenticated]
-
     
-    def get(self):
-        user = self.request.user
-        return LikeDislike.objects.filter(who_liked=user)
-
-    
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         serializer_class = LikeDislikeSerializer(data=request.data)
         if serializer_class.is_valid:
-            serializer_class.save()
-            return Response(serializer_class.errors)
+            data = serializer_class.validated_data
+            who_user_liked_id = data.get('who_user_liked_id')
+            whom_user_liked_id = data.get('whom_user_liked_id')
+            like = data.get('like')
+            dislike = data.get('dislike')
+            LikeDislike.objects.update_or_create(who_user_liked_id=who_user_liked_id,
+                                                 whom_user_liked_id=whom_user_liked_id,
+                                                 like=like,
+                                                 dislike=dislike)
+            print(f"{who_user_liked_id}, {whom_user_liked_id}, {like}, {dislike}")
+        return Response("success")
+    
+    def get(self, request, whom_user_liked_id):
+        obj_likes = LikeDislike.objects.get(who_user_liked_id=request.user,
+                                            whom_user_liked_id=whom_user_liked_id)
+        serialize = LikeDislikeSerializer(instance=obj_likes, many=True)
+        return Response(serialize.data)
 
 
+
+
+    
+    
