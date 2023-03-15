@@ -1,10 +1,10 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from applications.likes.views import LikesApiView
+from applications.likedislike.views import LikeDislikeAPIView
 
 
 urlpatterns = [
-    path('', LikesApiView.as_view()),
+    path('', LikeDislikeAPIView.as_view()),
 
 ]
