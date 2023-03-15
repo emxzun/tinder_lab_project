@@ -1,4 +1,4 @@
-from channels.consumer import SyncConsumer
+ip from channels.consumer import SyncConsumer
 
 
 class ChatConsumer(SyncConsumer):
