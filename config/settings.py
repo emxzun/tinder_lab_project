@@ -15,24 +15,24 @@ from pathlib import Path
 
 import dj_database_url
 import os
-from dotenv import load_dotenv
+from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / '.env')
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', default=True)
+DEBUG = config('DEBUG', default=True)
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -40,8 +40,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 INSTALLED_APPS = [
     'django.contrib.admin',
 
-    "daphne",
-
+    'daphne',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -56,6 +55,7 @@ INSTALLED_APPS = [
     #apps
     'applications.account',
     'applications.chat',
+    'applications.notification',
 ]
 
 MIDDLEWARE = [
@@ -94,9 +94,8 @@ ASGI_APPLICATION = "config.asgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DB_URL'), conn_max_age=600),
+    'default': dj_database_url.config(default=config('DB_URL'))
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -152,6 +151,11 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 
 BROKER_URL = 'redis://127.0.0.1:6379/0'
 BROKER_TRANSPORT = 'redis'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_IMPORTS = ('applications.notification.tasks', )
 
 AUTH_USER_MODEL = 'account.User'
 

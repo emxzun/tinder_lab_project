@@ -18,7 +18,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('swagger/', schema_view.with_ui('swagger')),
     path('api/v1/account/', include('applications.account.urls')),
-    path('api/v1/chat', include('applications.chat.urls'))
+    path('api/v1/chat/', include('applications.chat.urls')),
+    path('api/v1/notification/', include('applications.notification.urls')),
 ]
 
 if settings.DEBUG:
