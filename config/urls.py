@@ -18,7 +18,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('swagger/', schema_view.with_ui('swagger')),
     path('api/v1/account/', include('applications.account.urls')),
-    path('api/v1/chat', include('applications.chat.urls'))
+    path('api/v1/chat', include('applications.chat.urls')),
     path('api/v1/recommendations/', include('applications.recommendations.urls')),
     path('api/v1/likedislike/<int:whom_user_liked_id>/', include('applications.likedislike.urls'))
 ]
