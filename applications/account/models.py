@@ -80,11 +80,20 @@ class Profile(models.Model):
         TO_HAVE_A_FAN = 'HF', _('To have a fan')
         ONE_DATE = 'OD', _('One Date')
 
+    class Interests(models.TextChoices):
+        SPORT = 'SP', _('Sport')
+        ART = 'AT', _('Art')
+        MUSIC = 'MS', _('Music')
+        SELF_DEVELOPMENT = 'SD', _('Self development')
+        CREATION = 'CN', _('Creation')
+        ANOTHER = 'AR', _('Another')
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
     gender = models.CharField(max_length=1, choices=Gender.choices)
     sexual_orientation = models.CharField(max_length=2, choices=SexualOrientation.choices)
     description = models.TextField(max_length=200)
     status = models.CharField(max_length=2, choices=Status.choices)
+    interests = models.CharField(max_length=2, choices=Interests.choices)
 
 
 class Image(models.Model):
