@@ -2,12 +2,12 @@ from django.db import models
 from applications.account.models import Profile
 
 class LikeDislike(models.Model):
-    who_user_liked_id = models.ForeignKey(Profile, on_delete=models.CASCADE, 
-                                          related_name='likedislake', 
-                                          verbose_name="Кто поставил лайк/дизлайк")
-    whom_user_liked_id = models.ForeignKey(Profile, on_delete=models.CASCADE, 
-                                           related_name='likedislake', 
-                                           verbose_name="На кого поставили лайк/дизлайк")
+    who_profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE, 
+                                          related_name='wholikedislake', 
+                                          verbose_name="profile_id - Кто поставил лайк/дизлайк")
+    whom_profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE, 
+                                           related_name='whomlikedislake', 
+                                           verbose_name="profile_id - На кого поставили лайк/дизлайк")
     like = models.BooleanField(default=False)
     dislike = models.BooleanField(default=False)
 

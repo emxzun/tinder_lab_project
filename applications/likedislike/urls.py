@@ -3,8 +3,9 @@ from rest_framework.routers import DefaultRouter
 
 from applications.likedislike.views import LikeDislikeAPIView
 
+router = DefaultRouter()
+router.register('', LikeDislikeAPIView)
 
 urlpatterns = [
-    path('', LikeDislikeAPIView.as_view()),
-
+    path('', include(router.urls)),
 ]
