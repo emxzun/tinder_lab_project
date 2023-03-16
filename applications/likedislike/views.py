@@ -11,19 +11,16 @@ class LikeDislikeAPIView(APIView):
     permission_classes = [AllowAny]
     serializer_class = LikeDislikeSerializer
     
-    def post(self, request, *args, **kwargs):
+    def post(self, request, who_user_liked_id):
         serializer_class = LikeDislikeSerializer(data=request.data)
         if serializer_class.is_valid:
             data = serializer_class.validated_data
-            who_user_liked_id = data.get('who_user_liked_id')
-            whom_user_liked_id = data.get('whom_user_liked_id')
             like = data.get('like')
             dislike = data.get('dislike')
-            LikeDislike.objects.update_or_create(who_user_liked_id=who_user_liked_id,
-                                                 whom_user_liked_id=whom_user_liked_id,
+            LikeDislike.objects.update_or_create(who_user_liked_id=request.user,
+                                                 whom_user_liked_id=who_user_liked_id,
                                                  like=like,
                                                  dislike=dislike)
-            print(f"{who_user_liked_id}, {whom_user_liked_id}, {like}, {dislike}")
         return Response("success")
     
     def get(self, request, whom_user_liked_id):
