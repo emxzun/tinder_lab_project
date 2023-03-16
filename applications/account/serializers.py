@@ -44,7 +44,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['user', 'images', 'gender', 'sexual_orientation', 'description', 'status']
+        fields = ['user', 'images', 'gender', 'sexual_orientation', 'description', 'status', 'interests']
 
     def create(self, validated_data):
         request = self.context.get('request')
