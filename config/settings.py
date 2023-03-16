@@ -57,6 +57,8 @@ INSTALLED_APPS = [
     #apps
     'applications.account',
     'applications.chat',
+    'applications.likedislike',
+    'applications.recommendations'
 ]
 
 MIDDLEWARE = [
@@ -202,4 +204,4 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
