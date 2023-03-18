@@ -16,9 +16,6 @@ class RegisterApiView(mixins.CreateModelMixin, viewsets.GenericViewSet):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
 
-    # def post(self):
-    #     return Response('Вы успешно зарегистрировались. В течении минуты вам придет письмо с активацией.', status=201)
-
 
 class ActivationApiView(APIView):
     @staticmethod
