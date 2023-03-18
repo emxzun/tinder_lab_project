@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser
@@ -89,6 +91,8 @@ class Profile(models.Model):
         ANOTHER = 'AR', _('Another')
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
+    birth_date = models.DateField(blank=True, null=True)
+    age = models.CharField(max_length=50)
     gender = models.CharField(max_length=1, choices=Gender.choices)
     sexual_orientation = models.CharField(max_length=2, choices=SexualOrientation.choices)
     description = models.TextField(max_length=200)
