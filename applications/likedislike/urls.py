@@ -1,11 +1,11 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
 
-from applications.likedislike.views import LikeDislikeAPIView
+from applications.likedislike.views import SetLikeAPIView, SetDisLikeAPIView, GetLikeDislikeAPIView
 
-router = DefaultRouter()
-router.register('', LikeDislikeAPIView)
+
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('like/<int:recipient_id>/', SetLikeAPIView.as_view()),
+    path('dislike/<int:recipient_id>/', SetDisLikeAPIView.as_view()),
+    path('get_status_like/<int:recipient_id>/', GetLikeDislikeAPIView.as_view()),
 ]

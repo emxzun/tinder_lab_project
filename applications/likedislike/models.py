@@ -2,17 +2,19 @@ from django.db import models
 from applications.account.models import Profile
 
 class LikeDislike(models.Model):
-    who_profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE, 
-                                          related_name='wholikedislake', 
+    sender = models.ForeignKey(Profile, on_delete=models.CASCADE, 
+                                          related_name='like_sent', 
                                           verbose_name="profile_id - Кто поставил лайк/дизлайк")
-    whom_profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE, 
-                                           related_name='whomlikedislake', 
+    recipient = models.ForeignKey(Profile, on_delete=models.CASCADE, 
+                                           related_name='like_receiver', 
                                            verbose_name="profile_id - На кого поставили лайк/дизлайк")
-    like = models.BooleanField(default=False)
-    dislike = models.BooleanField(default=False)
+    is_like = models.BooleanField(default=False)
+    is_dislike = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.who_user_liked_id
+        return f"is_like-{self.is_like}, is_dislike-{self.is_dislike}" 
     class Meta:
         verbose_name = 'Лайк-Дизлайк'
         verbose_name_plural = 'Лайки-Дизлайки'
