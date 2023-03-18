@@ -1,3 +1,4 @@
+from datetime import date
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from applications.account.models import Profile, Image
@@ -41,15 +42,18 @@ class ImageSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     user = serializers.EmailField(required=False)
     images = ImageSerializer(many=True, read_only=True)
+    age = serializers.CharField(required=False)
 
     class Meta:
         model = Profile
-        fields = ['user', 'images', 'gender', 'sexual_orientation', 'description', 'status', 'interests']
+        fields = ['user', 'images', 'gender', 'sexual_orientation', 'description', 'status', 'interests', 'birth_date', 'age']
 
     def create(self, validated_data):
         request = self.context.get('request')
         user = request.user
-        profile = Profile.objects.create(user=user, **validated_data)
+        birth_date = validated_data['birth_date']
+        age = date.today()-birth_date
+        profile = Profile.objects.create(user=user, age=int((age).days/365.25), **validated_data)
         files_data = request.FILES
         for image in files_data.getlist('images'):
             Image.objects.create(profile=profile, image=image)
