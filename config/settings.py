@@ -57,8 +57,6 @@ INSTALLED_APPS = [
     #apps
     'applications.account',
     'applications.chat',
-    'applications.likedislike',
-    'applications.recommendations'
 ]
 
 MIDDLEWARE = [
@@ -153,9 +151,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 
-BROKER_URL = 'redis://127.0.0.1:6379/0'
-BROKER_TRANSPORT = 'redis'
-
 AUTH_USER_MODEL = 'account.User'
 
 REST_FRAMEWORK = {
@@ -204,4 +199,4 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+

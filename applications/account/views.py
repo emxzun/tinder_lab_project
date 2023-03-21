@@ -1,4 +1,4 @@
-from rest_framework import status
+from rest_framework import status, viewsets, mixins
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -12,13 +12,9 @@ from applications.account.serializers import RegisterSerializer, ForgotPasswordS
 User = get_user_model()
 
 
-class RegisterApiView(APIView):
-    @staticmethod
-    def post(request):
-        serializer = RegisterSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response('Вы успешно зарегистрировались. В течении минуты вам придет письмо с активацией.', status=201)
+class RegisterApiView(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
 
 
 class ActivationApiView(APIView):
