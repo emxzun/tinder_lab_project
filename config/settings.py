@@ -57,6 +57,8 @@ INSTALLED_APPS = [
     #apps
     'applications.account',
     'applications.chat',
+    'applications.likedislike',
+    'applications.recommendations',
 ]
 
 MIDDLEWARE = [
