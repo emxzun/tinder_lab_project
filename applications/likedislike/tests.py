@@ -1,14 +1,21 @@
 
-from rest_framework.test import APITestCase, APIClient
-from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
+from rest_framework.test import APITestCase
+from rest_framework import status
 
 from django.urls import reverse, resolve
 from django.test import TestCase, SimpleTestCase
 
 from applications.likedislike.views import SetLikeAPIView, SetDisLikeAPIView, GetLikeDislikeAPIView
 from applications.account.models import Profile, User
+
+
+URL_TOKEN_OBTAIN_PAIR = reverse('token_obtain_pair') 
+URL_SET_LIKE = reverse('set_like', args=[1]) 
+URL_SET_DISLIKE = reverse('set_dislake', args=[1]) 
+URL_GET_STATUS_LIKE = reverse('get_status_like', args=[1])
+
 class ApiCheckUrlsResolveTests(SimpleTestCase):
-    def test_check_url_resolve(self):
+    def __test_check_url_resolve(self):
         url = reverse('set_like', args=[1])
         self.assertEqual(resolve(url).func.view_class, SetLikeAPIView)
 
@@ -20,27 +27,32 @@ class ApiCheckUrlsResolveTests(SimpleTestCase):
 
 
 class ApiSetGetLikeDislikeTest(APITestCase):
-    url_set_like = reverse('set_like', args=[1]) 
-    url_status_like = reverse('get_status_like', args=[1])  
-
+      
     def setUp(self):
-        self.user = User.objects.create_user(username='admin555', password='admin555', email='email@example.yu')    
-        self.profile  = Profile.objects.create(user=self.user, age='35', gender='M', sexual_orientation='HE', description='text', status='LP', interests='SP')
+        self.username = 'admin555'
+        self.password = 'admin555'
+        self.email = 'email@example.yu'
+        self.user = User.objects.create_user(username=self.username, 
+                                             password=self.password, 
+                                             email=self.email,
+                                             is_active=True)     
+        self.profile  = Profile.objects.create(user=self.user, 
+                                               age='35', 
+                                               gender='M', 
+                                               sexual_orientation='HE', 
+                                               description='text', 
+                                               status='LP', 
+                                               interests='SP')
         
-        self.client = APIClient()
+    def test_login_get_token(self):
+        data = {'username': self.username, 'password': self.password}
+        response = self.client.post(URL_TOKEN_OBTAIN_PAIR, data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         
-        self.token = AccessToken.for_user(user=self.profile)
-        self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token}')
+        self.token = response.data['access']
+        print(f"Token:{self.token}")
 
-        
-    def test_get_custom_authenticated(self):
-        
-        print(f"TOKEN:{self.token}")
-        response = self.client.post(self.url_set_like)
-        print(f"status_code:{response.status_code}")
-        
-        
-        
+        response = self.client.post(URL_SET_LIKE, HTTP_AUTHORIZATION=f'Bearer {self.token}')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-
-        
+    
