@@ -92,13 +92,15 @@ class Profile(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
     birth_date = models.DateField(blank=True, null=True)
-    age = models.CharField(max_length=50)
+    age = models.CharField(max_length=50, null=True, blank=True)
     gender = models.CharField(max_length=1, choices=Gender.choices)
     sexual_orientation = models.CharField(max_length=2, choices=SexualOrientation.choices)
     description = models.TextField(max_length=200)
     status = models.CharField(max_length=2, choices=Status.choices)
     interests = models.CharField(max_length=2, choices=Interests.choices)
 
+    def __str__(self):
+        return f'{self.user}: {self.age}'
 
 class Image(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='images')
