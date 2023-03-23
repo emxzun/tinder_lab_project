@@ -3,7 +3,7 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 
 from django.urls import reverse, resolve
-from django.test import TestCase, SimpleTestCase
+from django.test import SimpleTestCase
 
 from applications.likedislike.views import SetLikeAPIView, SetDisLikeAPIView, GetLikeDislikeAPIView
 from applications.account.models import Profile, User
@@ -33,8 +33,10 @@ class ApiSetGetLikeDislikeTest(APITestCase):
             экземпляров - django.test.client.Client(для отправик http-запросов),
             создает переменную 'self.user', создает виртуальные модели - Profile(models.Model) и т.п. 
         '''
-        self.username = 'admin555'
-        self.password = 'admin555'
+        #В виртаульной БД создаем экземпляр User и Profile, 
+        # под данными которого создается 'self.user' для request
+        self.username = 'example_username'
+        self.password = 'example_password'
         self.email = 'email@example.yu'
         self.user = User.objects.create_user(username=self.username, 
                                              password=self.password, 
