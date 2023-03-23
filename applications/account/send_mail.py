@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 def send_confirmation_email(email, code):
     send_mail(
         'Подтверждение',
-        f'http://0.0.0.0:10000/api/v1/account/activate/{code}',
+        f'http://127.0.0.1:3000/api/v1/account/activate/{code}',
         'e352709@gmail.com',
         [email]
     )
