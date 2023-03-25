@@ -41,7 +41,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 INSTALLED_APPS = [
     'django.contrib.admin',
 
-    "daphne",
+    'daphne',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,10 +50,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #libs
+    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
-    "corsheaders",
+
 
     #apps
     'applications.account',
@@ -203,9 +204,25 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://0.0.0.0:10000"
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
 ]
