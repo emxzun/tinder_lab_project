@@ -5,7 +5,7 @@ from applications.likedislike.models import LikeDislike
 from applications.account.models import Profile
 
 class SetLikeAPIView(APIView):
-    '''Установка Like на профиле ID - recipient_id'''
+    '''Установка Like на профиле ID - recipient user_id'''
     
     @staticmethod
     def post(request, recipient_id):
@@ -30,7 +30,7 @@ class SetLikeAPIView(APIView):
                 return Response({'status': 'success', 'message': 'You liked this user'})
     
 class SetDisLikeAPIView(APIView):
-    '''Установка Dislike на профиле ID - recipient_id'''
+    '''Установка Dislike на профиле ID - recipient user_id'''
 
     @staticmethod
     def post(request, recipient_id):
@@ -55,7 +55,7 @@ class SetDisLikeAPIView(APIView):
                 return Response({'status': 'success', 'message': 'You disliked this user'})
             
 class GetLikeDislikeAPIView(APIView): 
-    '''Получение статуса Like/Dislike на профиле ID - recipient_id
+    '''Получение статуса Like/Dislike на профиле ID - recipient user_id
         Формат ответа:
             "is_like": BooleanField,
             "is_dislike": BooleanField
