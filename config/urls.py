@@ -15,6 +15,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+<<<<<<< HEAD
     path('', include('applications.core.urls')),
     path('rooms/', include('applications.chat.urls')),
     path('admin/', admin.site.urls),
@@ -27,3 +28,14 @@ urlpatterns = [
 
 ]
 
+=======
+    path('admin/', admin.site.urls),
+    path('swagger/', schema_view.with_ui('swagger')),
+    path('api/v1/account/', include('applications.account.urls')),
+    path('api/v1/chat/', include('applications.chat.urls')),
+    path('api/v1/notification/', include('applications.notification.urls')),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+>>>>>>> origin/mika

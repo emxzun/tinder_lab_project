@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import json
 from django.contrib.auth import get_user_model
 from channels.generic.websocket import AsyncWebsocketConsumer
@@ -119,3 +120,20 @@ class ChatConsumer(AsyncWebsocketConsumer):
 #             'message': message,
 #             'chat_id': chat_id
 #         }))
+=======
+ip from channels.consumer import SyncConsumer
+
+
+class ChatConsumer(SyncConsumer):
+
+    def websocket_connect(self, event):
+        self.send({
+            "type": "websocket.accept",
+        })
+
+    def websocket_receive(self, event):
+        self.send({
+            "type": "websocket.send",
+            "text": event["text"],
+        })
+>>>>>>> origin/mika

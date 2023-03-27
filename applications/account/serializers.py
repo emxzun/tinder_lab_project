@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 from datetime import date
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from applications.account.models import Profile, Image
 from applications.account.send_mail import send_confirmation_email, send_confirmation_code
+=======
+from django.contrib.auth import get_user_model
+from rest_framework import serializers
+from applications.account.models import Profile, Image
+from applications.account.tasks import send_confirmation_email_celery, send_confirmation_code
+>>>>>>> origin/mika
 
 User = get_user_model()
 
@@ -25,8 +32,15 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
+<<<<<<< HEAD
         code = user.activation_code
         send_confirmation_email(user.email, code)
+=======
+
+        code = user.activation_code
+        send_confirmation_email_celery.delay(user.email, code)
+
+>>>>>>> origin/mika
         return user
 
 
@@ -40,18 +54,29 @@ class ImageSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     user = serializers.EmailField(required=False)
     images = ImageSerializer(many=True, read_only=True)
+<<<<<<< HEAD
     age = serializers.CharField(required=False)
 
     class Meta:
         model = Profile
         fields = ['user', 'images', 'gender', 'sexual_orientation', 'description', 'status', 'interests', 'birth_date', 'age']
+=======
+
+    class Meta:
+        model = Profile
+        fields = ['user', 'images', 'gender', 'sexual_orientation', 'description', 'status']
+>>>>>>> origin/mika
 
     def create(self, validated_data):
         request = self.context.get('request')
         user = request.user
+<<<<<<< HEAD
         birth_date = validated_data['birth_date']
         age = date.today()-birth_date
         profile = Profile.objects.create(user=user, age=int((age).days/365.25), **validated_data)
+=======
+        profile = Profile.objects.create(user=user, **validated_data)
+>>>>>>> origin/mika
         files_data = request.FILES
         for image in files_data.getlist('images'):
             Image.objects.create(profile=profile, image=image)

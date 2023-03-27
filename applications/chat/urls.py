@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # from rest_framework.routers import DefaultRouter
 # from .views import ChatViewSet, ChatNotificationAPIView
@@ -22,3 +23,16 @@ urlpatterns = [
 #     path('ws/<str:room_name>/', consumers.ChatConsumer.as_asgi(), name='chat-room'),
 # ] + router.urls
 
+=======
+from django.urls import path
+from rest_framework.routers import  SimpleRouter
+
+from applications.chat.views import MessageViewSet, ChatViewSet
+
+router = SimpleRouter()
+router.register('messages', MessageViewSet)
+router.register('chat', ChatViewSet)
+
+
+urlpatterns = router.urls
+>>>>>>> origin/mika

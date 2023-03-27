@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from rest_framework import status, viewsets, mixins
+=======
+from rest_framework import status
+>>>>>>> origin/mika
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -6,14 +10,29 @@ from django.contrib.auth import get_user_model
 from rest_framework.viewsets import ModelViewSet
 
 from applications.account.models import Profile
+<<<<<<< HEAD
 from applications.account.serializers import RegisterSerializer, ForgotPasswordSerializer, ForgotPasswordCompleteSerializer, ChangePasswordSerializer, ProfileSerializer
+=======
+from applications.account.serializers import RegisterSerializer, ForgotPasswordSerializer, \
+    ForgotPasswordCompleteSerializer, ChangePasswordSerializer, ProfileSerializer
+>>>>>>> origin/mika
 
 User = get_user_model()
 
 
+<<<<<<< HEAD
 class RegisterApiView(mixins.CreateModelMixin, viewsets.GenericViewSet):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
+=======
+class RegisterApiView(APIView):
+    @staticmethod
+    def post(request):
+        serializer = RegisterSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response('Вы успешно зарегистрировались. В течении минуты вам придет письмо с активацией.', status=201)
+>>>>>>> origin/mika
 
 
 class ActivationApiView(APIView):

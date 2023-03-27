@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
@@ -207,3 +208,19 @@ def room(request, slug):
 #             'message': message
 #         }
 #         return Response(response, status=status.HTTP_200_OK)
+=======
+from rest_framework.viewsets import ModelViewSet
+
+from applications.chat.models import Message
+from applications.chat.serializers import ChatSerializer, MessageSerializer
+
+
+class MessageViewSet(ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+
+
+class ChatViewSet(ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = ChatSerializer
+>>>>>>> origin/mika
