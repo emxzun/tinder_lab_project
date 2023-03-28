@@ -1,9 +1,9 @@
-<<<<<<< HEAD
 import json
-from django.contrib.auth import get_user_model
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
 from .models import Room, Message
+from django.contrib.auth import get_user_model
+
 
 User = get_user_model()
 
@@ -25,7 +25,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.channel_name
         )
 
-
+    # Receive message from WebSocket
     async def receive(self, text_data):
         data = json.loads(text_data)
         print(data)
@@ -35,7 +35,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         await self.save_message(username, room, message)
 
-
+        # Send message to room group
         await self.channel_layer.group_send(
             self.room_group_name,
             {
@@ -45,12 +45,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
             }
         )
 
-
+    # Receive message from room group
     async def chat_message(self, event):
         message = event['message']
         username = event['username']
 
-
+        # Send message to WebSocket
         await self.send(text_data=json.dumps({
             'message': message,
             'username': username
@@ -62,78 +62,3 @@ class ChatConsumer(AsyncWebsocketConsumer):
         room = Room.objects.get(slug=room)
 
         Message.objects.create(user=user, room=room, content=message)
-# class ChatNotificationConsumer(AsyncWebsocketConsumer):
-#     async def connect(self):
-#         user = self.scope['user']
-#         if user.is_anonymous:
-#             await self.close()
-#         else:
-#             await self.channel_layer.group_add(
-#                 f"user_{user.id}",
-#                 self.channel_name
-#             )
-#             await self.accept()
-#
-#     async def disconnect(self, close_code):
-#         user = self.scope['user']
-#         if not user.is_anonymous:
-#             await self.channel_layer.group_discard(
-#                 f"user_{user.id}",
-#                 self.channel_name
-#             )
-#
-#     async def chat_notification(self, event):
-#         message = event['message']
-#         chat_id = event['chat_id']
-#         await self.send(text_data=json.dumps({
-#             'type': 'chat_notification',
-#             'message': message,
-#             'chat_id': chat_id
-#         }))
-#
-#
-# class ChatConsumer(AsyncWebsocketConsumer):
-#     async def connect(self):
-#         user = self.scope['user']
-#         if user.is_anonymous:
-#             await self.close()
-#         else:
-#             await self.channel_layer.group_add(
-#                 f"user_{user.id}",
-#                 self.channel_name
-#             )
-#             await self.accept()
-#
-#     async def disconnect(self, close_code):
-#         user = self.scope['user']
-#         if not user.is_anonymous:
-#             await self.channel_layer.group_discard(
-#                 f"user_{user.id}",
-#                 self.channel_name
-#             )
-#
-#     async def chat_message(self, event):
-#         message = event['message']
-#         chat_id = event['chat_id']
-#         await self.send(text_data=json.dumps({
-#             'type': 'chat_message',
-#             'message': message,
-#             'chat_id': chat_id
-#         }))
-=======
-ip from channels.consumer import SyncConsumer
-
-
-class ChatConsumer(SyncConsumer):
-
-    def websocket_connect(self, event):
-        self.send({
-            "type": "websocket.accept",
-        })
-
-    def websocket_receive(self, event):
-        self.send({
-            "type": "websocket.send",
-            "text": event["text"],
-        })
->>>>>>> origin/mika

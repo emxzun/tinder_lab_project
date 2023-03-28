@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 from datetime import datetime
 
-=======
->>>>>>> origin/mika
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser
@@ -85,7 +82,6 @@ class Profile(models.Model):
         TO_HAVE_A_FAN = 'HF', _('To have a fan')
         ONE_DATE = 'OD', _('One Date')
 
-<<<<<<< HEAD
     class Interests(models.TextChoices):
         SPORT = 'SP', _('Sport')
         ART = 'AT', _('Art')
@@ -97,17 +93,11 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
     birth_date = models.DateField(blank=True, null=True)
     age = models.CharField(max_length=50)
-=======
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
->>>>>>> origin/mika
     gender = models.CharField(max_length=1, choices=Gender.choices)
     sexual_orientation = models.CharField(max_length=2, choices=SexualOrientation.choices)
     description = models.TextField(max_length=200)
     status = models.CharField(max_length=2, choices=Status.choices)
-<<<<<<< HEAD
     interests = models.CharField(max_length=2, choices=Interests.choices)
-=======
->>>>>>> origin/mika
 
 
 class Image(models.Model):
