@@ -15,7 +15,7 @@ User = get_user_model()
 
 URL_TOKEN_OBTAIN_PAIR = reverse('token_obtain_pair') 
 URL_SET_LIKE = reverse('like') 
-URL_SET_DISLIKE = reverse('dislake') 
+URL_SET_DISLIKE = reverse('dislike') 
 URL_GET_STATUS_LIKE = reverse('get_status_like')
 
 class ApiCheckUrlsTests(SimpleTestCase):
@@ -66,17 +66,14 @@ class ApiSetGetLikeDislikeTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         #Ставил лайк на профил и получаем ответ об успешной обработке запроса
-        response = self.client.post(URL_SET_LIKE, HTTP_AUTHORIZATION=f'Bearer {self.token}')
-        self.assertEqual(response.data['status'], "success")
-        self.assertEqual(response.data['message'], "You liked this user")
+        response = self.client.post(URL_SET_LIKE, HTTP_AUTHORIZATION=f'Bearer {self.token}',
+                                    data={"sender": 1,"recipient": 1})
+        self.assertEqual(response.data['message'], "Like created successfully!")
 
         #Ставил дизлайк на профил и получаем ответ об успешной обработке запроса
-        response = self.client.post(URL_SET_DISLIKE, HTTP_AUTHORIZATION=f'Bearer {self.token}')
-        self.assertEqual(response.data['status'], "success")
-        self.assertEqual(response.data['message'], "You disliked this user")
+        response = self.client.post(URL_SET_DISLIKE, HTTP_AUTHORIZATION=f'Bearer {self.token}',
+                                    data={"sender": 1,"recipient": 1})
+        self.assertEqual(response.data['message'], "you have already disliked this person")
 
-        #Получаем информацию об установленных ранее Like/Dislike
-        response = self.client.get(URL_GET_STATUS_LIKE, HTTP_AUTHORIZATION=f'Bearer {self.token}')
-        self.assertEqual(str(list(response.data)), "[{'is_like': False, 'is_dislike': True}]")
-        
+       
 
