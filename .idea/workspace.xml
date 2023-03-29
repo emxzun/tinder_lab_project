@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="489f8d45-4ce4-47ca-9de3-860f8f5b9f1e" name="Changes" comment="" />
+    <list default="true" id="489f8d45-4ce4-47ca-9de3-860f8f5b9f1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/applications/account/migrations/0002_alter_profile_age.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
