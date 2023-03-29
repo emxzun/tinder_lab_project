@@ -15,4 +15,6 @@ class FilterProfileBackend(BaseFilterBackend):
                                    status=user_status,
                                    sexual_orientation=user_sexual_orientation,
                                    age__in=user_age_range_minus_5year_plus).exclude(user_id=user_id)
+
         return queryset
+

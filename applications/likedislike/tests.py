@@ -1,4 +1,3 @@
-
 from rest_framework.test import APITestCase
 from rest_framework import status
 
@@ -12,22 +11,24 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-
 URL_TOKEN_OBTAIN_PAIR = reverse('token_obtain_pair')
 URL_SET_LIKE = reverse('like')
 URL_SET_DISLIKE = reverse('dislike')
 URL_GET_STATUS_LIKE = reverse('get_status_like')
 
+
 class ApiCheckUrlsTests(SimpleTestCase):
     '''Класс валидации маршрутов установки/получения статуса like/dislike
         тест запускается py .\manage.py test applications.likedislike.tests
     '''
+
     def test_check_url(self):
         '''Функция валидации маршрутов для установки и получения статуса like/dislike
         '''
         self.assertEqual(resolve(URL_SET_LIKE).func.view_class, LikeCreateAPIView)
         self.assertEqual(resolve(URL_SET_DISLIKE).func.view_class, SetDislikeAPIView)
         self.assertEqual(resolve(URL_GET_STATUS_LIKE).func.view_class, GetStatusLikeAPIView)
+
 
 class ApiSetGetLikeDislikeTest(APITestCase):
     '''Класс проверки функциональности API likedislike'''
@@ -44,13 +45,13 @@ class ApiSetGetLikeDislikeTest(APITestCase):
                                              password=self.password,
                                              email=self.email,
                                              is_active=True)
-        self.profile  = Profile.objects.create(user=self.user,
-                                               age='35',
-                                               gender='M',
-                                               sexual_orientation='HE',
-                                               description='text',
-                                               status='LP',
-                                               interests='SP')
+        self.profile = Profile.objects.create(user=self.user,
+                                              age='35',
+                                              gender='M',
+                                              sexual_orientation='HE',
+                                              description='text',
+                                              status='LP',
+                                              interests='SP')
 
     def test_set_get_like_dislike(self):
         '''Функция проверки функциональности API -
@@ -67,10 +68,10 @@ class ApiSetGetLikeDislikeTest(APITestCase):
 
         # Ставил лайк на профил и получаем ответ об успешной обработке запроса
         response = self.client.post(URL_SET_LIKE, HTTP_AUTHORIZATION=f'Bearer {self.token}',
-                                    data={"sender": 1 ,"recipient": 1})
+                                    data={"sender": 1, "recipient": 1})
         self.assertEqual(response.data['message'], "Like created successfully!")
 
         # Ставил дизлайк на профил и получаем ответ об успешной обработке запроса
         response = self.client.post(URL_SET_DISLIKE, HTTP_AUTHORIZATION=f'Bearer {self.token}',
-                                    data={"sender": 1 ,"recipient": 1})
+                                    data={"sender": 1, "recipient": 1})
         self.assertEqual(response.data['message'], "you have already disliked this person")

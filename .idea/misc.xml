@@ -2,13 +2,22 @@
 <project version="4">
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8" project-jdk-type="Python SDK" />
+=======
+>>>>>>> 011fe3f0b76cc691eafda309603d4b126dde2db9
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8" project-jdk-type="Python SDK" />
 =======
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (tinder)" project-jdk-type="Python SDK" />
 >>>>>>> origin/mika
+<<<<<<< HEAD
 =======
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8" project-jdk-type="Python SDK" />
 >>>>>>> origin/production
+=======
+>>>>>>> c1af10d8b7074fa8294831c64e5cf1ce46d4bd33
+>>>>>>> 011fe3f0b76cc691eafda309603d4b126dde2db9
   <component name="PyCharmProfessionalAdvertiser">
     <option name="shown" value="true" />
   </component>

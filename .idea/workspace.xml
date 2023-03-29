@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="489f8d45-4ce4-47ca-9de3-860f8f5b9f1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/applications/account/migrations/0002_alter_profile_age.py" beforeDir="false" />
+=======
+    <list default="true" id="78333c37-ddf5-4f38-8648-7519ea4c52a3" name="Changes" comment="">
+>>>>>>> 011fe3f0b76cc691eafda309603d4b126dde2db9
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

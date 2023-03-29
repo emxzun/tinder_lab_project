@@ -52,6 +52,10 @@ INSTALLED_APPS = [
 
     'daphne',
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 011fe3f0b76cc691eafda309603d4b126dde2db9
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -73,7 +77,11 @@ INSTALLED_APPS = [
     'applications.likedislike',
     'applications.recommendations',
     'applications.stripe',
+<<<<<<< HEAD
     'applications.app_users',
+=======
+    'applications.app_users'
+>>>>>>> 011fe3f0b76cc691eafda309603d4b126dde2db9
 ]
 
 MIDDLEWARE = [
@@ -179,7 +187,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 011fe3f0b76cc691eafda309603d4b126dde2db9
 BROKER_URL = 'redis://127.0.0.1:6379/0'
 BROKER_TRANSPORT = 'redis'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'

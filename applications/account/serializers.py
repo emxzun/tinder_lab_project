@@ -27,6 +27,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         code = user.activation_code
         send_confirmation_email(user.email, code)
+
         return user
 
 
