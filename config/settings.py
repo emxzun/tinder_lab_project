@@ -72,7 +72,7 @@ INSTALLED_APPS = [
     'applications.likedislike',
     'applications.recommendations',
     'applications.stripe',
-    'applications.app_users'
+    'applications.app_users',
 ]
 
 MIDDLEWARE = [
@@ -180,6 +180,7 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 
 BROKER_URL = 'redis://127.0.0.1:6379/0'
 BROKER_TRANSPORT = 'redis'
+
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'

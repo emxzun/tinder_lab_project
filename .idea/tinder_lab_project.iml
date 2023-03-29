@@ -5,10 +5,17 @@
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
 <<<<<<< HEAD
+<<<<<<< HEAD
+    <orderEntry type="jdk" jdkName="Python 3.8 (tinder)" jdkType="Python SDK" />
+=======
+    <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
+>>>>>>> origin/production
+=======
     <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
 =======
     <orderEntry type="jdk" jdkName="Python 3.8 (tinder)" jdkType="Python SDK" />
 >>>>>>> c1af10d8b7074fa8294831c64e5cf1ce46d4bd33
+>>>>>>> 011fe3f0b76cc691eafda309603d4b126dde2db9
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

@@ -1,5 +1,3 @@
-
-
 from rest_framework import serializers
 from applications.account.models import Profile
 from applications.account.serializers import ImageSerializer
