@@ -1,11 +1,12 @@
 from django.urls import path
 
-from applications.likedislike.views import SetLikeAPIView, SetDisLikeAPIView, GetLikeDislikeAPIView
+from applications.likedislike.views import LikeCreateAPIView, SetDislikeAPIView, GetStatusLikeAPIView
 
 
 
 urlpatterns = [
-    path('like/<int:recipient_id>/', SetLikeAPIView.as_view(), name='set_like'),
-    path('dislike/<int:recipient_id>/', SetDisLikeAPIView.as_view(), name='set_dislake'),
-    path('get_status_like/<int:recipient_id>/', GetLikeDislikeAPIView.as_view(), name='get_status_like'),
+    path('like/', LikeCreateAPIView.as_view(), name='like'),
+    path('dislike/', SetDislikeAPIView.as_view(), name='dislike'),
+    path('status_like/', GetStatusLikeAPIView.as_view(), name='get_status_like'),
+
 ]

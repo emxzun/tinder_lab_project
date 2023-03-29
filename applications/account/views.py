@@ -6,8 +6,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.viewsets import ModelViewSet
 
 from applications.account.models import Profile
-from applications.account.serializers import RegisterSerializer, ForgotPasswordSerializer, \
-    ForgotPasswordCompleteSerializer, ChangePasswordSerializer, ProfileSerializer
+from applications.account.serializers import RegisterSerializer, ForgotPasswordSerializer, ForgotPasswordCompleteSerializer, ChangePasswordSerializer, ProfileSerializer
 
 User = get_user_model()
 

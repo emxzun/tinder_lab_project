@@ -1,11 +1,7 @@
 from django.urls import path
-from rest_framework.routers import  SimpleRouter
+from . import views
 
-from applications.chat.views import MessageViewSet, ChatViewSet
-
-router = SimpleRouter()
-router.register('messages', MessageViewSet)
-router.register('chat', ChatViewSet)
-
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('', views.rooms, name='rooms'),
+    path('<slug:slug>/', views.room, name='room'),
+]

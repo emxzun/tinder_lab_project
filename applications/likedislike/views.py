@@ -3,85 +3,96 @@ from rest_framework.response import Response
 from rest_framework import status
 from applications.likedislike.models import LikeDislike
 from applications.account.models import Profile
+from applications.likedislike.serializers import LikeSerializer, DislikeSerializer, StatuslikeSerializer
 
-class SetLikeAPIView(APIView):
-    '''Установка Like на профиле ID - recipient_id'''
-    
-    @staticmethod
-    def post(request, recipient_id):
-        recipient = Profile.objects.get(user_id=recipient_id)
-        sender = Profile.objects.get(user_id=request.user.id)
 
-        if not LikeDislike.objects.filter(sender=sender, 
-                                          recipient=recipient).exists():
-            LikeDislike.objects.create(sender=sender, 
-                                       recipient=recipient, 
-                                       is_like=True, 
-                                       is_dislike=False)
-            return Response({'status': 'success', 'message': 'You liked this user'})
-        else:
-            like = LikeDislike.objects.get(sender=sender, recipient=recipient)
-            if like.is_like:
-                return Response({'status': 'error', 'message': 'You already liked this user'})
-            else:
-                like.is_like = True
-                like.is_dislike = False
-                like.save()
-                return Response({'status': 'success', 'message': 'You liked this user'})
-    
-class SetDisLikeAPIView(APIView):
-    '''Установка Dislike на профиле ID - recipient_id'''
-
-    @staticmethod
-    def post(request, recipient_id):
-        recipient = Profile.objects.get(user_id=recipient_id)
-        sender = Profile.objects.get(user_id=request.user.id)
-
-        if not LikeDislike.objects.filter(sender=sender, 
-                                          recipient=recipient).exists():
-            LikeDislike.objects.create(sender=sender, 
-                                       recipient=recipient, 
-                                       is_like=False, 
-                                       is_dislike=True)
-            return Response({'status': 'success', 'message': 'You disliked this user'})
-        else:
-            like = LikeDislike.objects.get(sender=sender, recipient=recipient_id)
-            if like.is_dislike:
-                return Response({'status': 'error', 'message': 'You already disliked this user'})
-            else:
-                like.is_dislike = True
-                like.is_like = False
-                like.save()
-                return Response({'status': 'success', 'message': 'You disliked this user'})
-            
-class GetLikeDislikeAPIView(APIView): 
-    '''Получение статуса Like/Dislike на профиле ID - recipient_id
-        Формат ответа:
-            "is_like": BooleanField,
-            "is_dislike": BooleanField
-                        
+class LikeCreateAPIView(APIView):
     '''
+Parameters data(body):
+    {
+        "sender": "int",
+        "recipient": "int"
+    }
+"sender" - user_id Кто ставит лайк
+"recipient" - user_id На кого ставят лайк
+    '''
+    serializer_class = LikeSerializer
 
-    @staticmethod
-    def get(request, recipient_id):
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        sender = serializer.validated_data['sender']
+        recipient = serializer.validated_data['recipient']
+        existing_like = LikeDislike.objects.filter(sender=sender, recipient=recipient).exists()
+        if existing_like:
+            message = 'You have already sent a like to this recipient'
+            response = {
+                'message': message
+            }
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
-        try:
-            recipient = Profile.objects.get(user_id=recipient_id)
-            sender = Profile.objects.get(user_id=request.user.id)
-            like_dislake = LikeDislike.objects.filter(sender=sender, 
-                                            recipient=recipient).values('is_like', 'is_dislike')
-            return Response(like_dislake, status=status.HTTP_200_OK)
-        except BaseException:
-            return Response({'message': 'По данному запросу нет данных'},status=status.HTTP_204_NO_CONTENT)
-    
-        
-            
-            
+        serializer.save()
+        data = serializer.data
+        message = 'Like created successfully!'
+        response = {
+            'data': data,
+            'message': message
+        }
+        return Response(response, status=status.HTTP_201_CREATED)
 
 
-     
+class SetDislikeAPIView(APIView):
+    '''
+Parameters data(body):
+    {
+        "sender": "int",
+        "recipient": "int"
+    }
+"sender" - user_id Кто ставит лайк
+"recipient" - user_id На кого ставят лайк
+    '''
+    serializers_class = DislikeSerializer
 
-            
-                    
-        
-        
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializers_class(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        sender = serializer.validated_data['sender']
+        recipient = serializer.validated_data['recipient']
+        existing_like = LikeDislike.objects.filter(sender=sender, recipient=recipient).exists()
+        if existing_like:
+            message = 'you have already disliked this person'
+            response = {
+                'message': message
+            }
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
+        serializer.save()
+        data = serializer.data
+        message = 'dislike created successfully'
+        response = {
+            'data': data,
+            'message': message
+        }
+        return Response(response, status=status.HTTP_201_CREATED)
+
+
+class GetStatusLikeAPIView(APIView):
+    '''
+Parameters data(body):
+    {
+        "sender": "int",
+        "recipient": "int"
+    }
+"sender" - user_id Кто ставит лайк
+"recipient" - user_id На кого ставят лайк
+    '''
+    serializers_class = StatuslikeSerializer
+
+    def get(self, request, *args, **kwargs):
+        serializer = self.serializers_class(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        sender = serializer.validated_data['sender']
+        recipient = serializer.validated_data['recipient']
+        like = LikeDislike.objects.filter(sender=sender, recipient=recipient).values('sender', 'recipient', 'is_like',
+                                                                                     'is_dislike')
+
+        return Response(like, status=status.HTTP_200_OK)
