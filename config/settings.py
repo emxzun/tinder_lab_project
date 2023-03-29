@@ -37,7 +37,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', default=True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'tinder-web.onrender.com']
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/rooms/'
@@ -74,11 +74,8 @@ INSTALLED_APPS = [
     'applications.likedislike',
     'applications.recommendations',
     'applications.stripe',
-<<<<<<< HEAD
     'applications.app_users',
-=======
     'applications.app_users'
->>>>>>> 011fe3f0b76cc691eafda309603d4b126dde2db9
 ]
 
 MIDDLEWARE = [
