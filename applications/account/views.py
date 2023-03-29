@@ -63,3 +63,11 @@ class ChangePasswordApiView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.set_new_password()
         return Response('Вы успешно изменили свой пароль')
+
+
+class ReturnUserIdAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user_id = request.user.id
+        return Response(f'id: {user_id}')

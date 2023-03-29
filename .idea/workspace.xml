@@ -4,8 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="489f8d45-4ce4-47ca-9de3-860f8f5b9f1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/applications/account/migrations/0002_alter_profile_age.py" beforeDir="false" />
+=======
     <list default="true" id="78333c37-ddf5-4f38-8648-7519ea4c52a3" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+<<<<<<< HEAD
+>>>>>>> 011fe3f0b76cc691eafda309603d4b126dde2db9
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
+>>>>>>> af3024b7d4cd8be9cd9f68725142d5b94e55ef9c
+>>>>>>> 5e28dff342048db6f8a2310703d0f3fdcaf9e081
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
