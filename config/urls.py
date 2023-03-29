@@ -25,8 +25,10 @@ urlpatterns = [
     path('api/v1/likedislike/', include('applications.likedislike.urls')),
     path('stripe/', include('applications.stripe.urls')),
     path('stripe_auth/', include('applications.app_users.urls')),
-
-
+    path('api/v1/chat/', include('applications.chat.urls')),
+    path('api/v1/chat', include('applications.chat.urls')),
+    path('api/v1/recommendations/', include('applications.recommendations.urls')),
+    path('api/v1/likedislike/', include('applications.likedislike.urls'))
 ]
 
 

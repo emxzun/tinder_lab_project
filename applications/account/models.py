@@ -99,6 +99,8 @@ class Profile(models.Model):
     status = models.CharField(max_length=2, choices=Status.choices)
     interests = models.CharField(max_length=2, choices=Interests.choices)
 
+    def __str__(self):
+        return f'{self.user}: {self.age}'
 
 class Image(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='images')

@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 class LikeSerializer(serializers.ModelSerializer):
     recipient = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
 
@@ -19,22 +20,24 @@ class LikeSerializer(serializers.ModelSerializer):
         like = LikeDislike.objects.create(sender=request.user, recipient=recipient, is_like=True)
         return like
 
+
 class DislikeSerializer(serializers.ModelSerializer):
     recipient = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
 
     class Meta:
         model = LikeDislike
-        fields = ['sender', 'recipient','is_dislike']
+        fields = ['sender', 'recipient', 'is_dislike']
 
     def create(self, validated_data):
         request = self.context.get('request')
         recipient = validated_data['recipient']
         like = LikeDislike.objects.create(sender=request.user, recipient=recipient, is_dislike=True)
         return like
-    
+
+
 class StatuslikeSerializer(serializers.ModelSerializer):
     recipient = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
 
     class Meta:
         model = LikeDislike
-        fields = ['sender', 'recipient', 'is_like', 'is_dislike']   
+        fields = ['sender', 'recipient', 'is_like', 'is_dislike']

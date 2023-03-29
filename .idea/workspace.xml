@@ -5,10 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="489f8d45-4ce4-47ca-9de3-860f8f5b9f1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/applications/account/migrations/0002_alter_profile_age.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/tinder_lab_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tinder_lab_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/notification/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/account/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/account/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/account/send_mail.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/account/send_mail.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/account/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/account/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/account/tasks.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/chat/consumers.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/chat/consumers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/chat/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/chat/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/chat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/chat/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/likedislike/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/likedislike/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/likedislike/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/likedislike/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/likedislike/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/likedislike/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/likedislike/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/likedislike/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/likedislike/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/likedislike/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/likedislike/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/likedislike/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/likedislike/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/likedislike/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/likedislike/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/likedislike/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/recommendations/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/recommendations/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/recommendations/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/recommendations/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/recommendations/filterbackend.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/recommendations/filterbackend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/recommendations/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/recommendations/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/recommendations/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/recommendations/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/recommendations/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/applications/recommendations/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/celery.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +58,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2NK3EgIRnMJ3JmI6CKFJvuJn029" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />

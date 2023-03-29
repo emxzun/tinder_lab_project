@@ -11,6 +11,3 @@ class RecommendationsApiView(ListAPIView):
     queryset = Profile.objects.all()
     serializer_class = RecommendationsSerializer
     filter_backends = [FilterProfileBackend]
-
-    
-
