@@ -9,8 +9,12 @@
       <change beforePath="$PROJECT_DIR$/applications/account/migrations/0002_alter_profile_age.py" beforeDir="false" />
 =======
     <list default="true" id="78333c37-ddf5-4f38-8648-7519ea4c52a3" name="Changes" comment="">
+<<<<<<< HEAD
 >>>>>>> 011fe3f0b76cc691eafda309603d4b126dde2db9
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
+>>>>>>> af3024b7d4cd8be9cd9f68725142d5b94e55ef9c
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
