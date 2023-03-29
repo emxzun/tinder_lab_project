@@ -52,10 +52,7 @@ INSTALLED_APPS = [
 
     'daphne',
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 011fe3f0b76cc691eafda309603d4b126dde2db9
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
