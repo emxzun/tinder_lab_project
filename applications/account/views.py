@@ -70,4 +70,4 @@ class ReturnUserIdAPIView(APIView):
 
     def get(self, request):
         user_id = request.user.id
-        return Response(f'id: {user_id}')
+        return Response(f'{user_id}')
