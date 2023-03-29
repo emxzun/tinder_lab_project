@@ -17,3 +17,4 @@ def send_confirmation_code(email, code):
         'e352709@gmail.com',
         [email]
     )
+

@@ -49,6 +49,10 @@ LOGIN_URL = '/login/'
 INSTALLED_APPS = [
     'channels',
     'django.contrib.admin',
+
+    'daphne',
+
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -56,9 +60,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #libs
+    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
+
 
     #apps
 
@@ -68,15 +74,14 @@ INSTALLED_APPS = [
     'applications.likedislike',
     'applications.recommendations',
     'applications.stripe',
-    'applications.app_users',
-
-
+    'applications.app_users'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -191,8 +196,6 @@ PRODUCT_PRICE = os.getenv('PRODUCT_PRICE')
 
 REDIRECT_DOMAIN = 'http://127.0.0.1:8000'
 
-
-
 AUTH_USER_MODEL = 'account.User'
 
 REST_FRAMEWORK = {
@@ -241,4 +244,25 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
