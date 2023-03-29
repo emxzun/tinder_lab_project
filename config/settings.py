@@ -73,7 +73,6 @@ INSTALLED_APPS = [
     'applications.recommendations',
     'applications.stripe',
     'applications.app_users',
-    'applications.app_users'
 ]
 
 MIDDLEWARE = [
