@@ -31,3 +31,10 @@ class DislikeSerializer(serializers.ModelSerializer):
         recipient = validated_data['recipient']
         like = LikeDislike.objects.create(sender=request.user, recipient=recipient, is_dislike=True)
         return like
+    
+class StatuslikeSerializer(serializers.ModelSerializer):
+    recipient = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+
+    class Meta:
+        model = LikeDislike
+        fields = ['sender', 'recipient', 'is_like', 'is_dislike']   
