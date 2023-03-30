@@ -93,7 +93,6 @@ class Profile(models.Model):
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
-    birth_date = models.DateField(blank=True, null=True)
     age = models.CharField(max_length=50)
     gender = models.CharField(max_length=1, choices=Gender.choices)
     sexual_orientation = models.CharField(max_length=2, choices=SexualOrientation.choices)
