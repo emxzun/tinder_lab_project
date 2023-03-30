@@ -16,7 +16,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', include('applications.core.urls')),
-    path('rooms/', include('applications.chat.urls')),
+    path('chat/', include('applications.chat.urls')),
     path('admin/', admin.site.urls),
     path('api/v1/account/', include('applications.account.urls')),
     path('api/v1/recommendations/', include('applications.recommendations.urls')),
