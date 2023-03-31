@@ -18,26 +18,23 @@ stripe.api_key = settings.STRIPE_SECRET_KEY_TEST
 
 
 class ProductPageAPIView(APIView):
-	@staticmethod
-	def get(request):
-		return render(request, 'user_payment/product_page.html')
 
-	@staticmethod
-	def post(request):
-		checkout_session = stripe.checkout.Session.create(
-			payment_method_types=['card'],
-			line_items=[
-				{
-					'price': settings.PRODUCT_PRICE,
-					'quantity': 1,
-				},
-			],
-			mode='payment',
-			customer_creation='always',
-			success_url=settings.REDIRECT_DOMAIN + '/payment_successful?session_id={CHECKOUT_SESSION_ID}',
-			cancel_url=settings.REDIRECT_DOMAIN + '/payment_cancelled',
-		)
-		return redirect(checkout_session.url, code=303)
+    @staticmethod
+    def get(request):
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[
+                {
+                    'price': settings.PRODUCT_PRICE,
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            customer_creation='always',
+            success_url=settings.REDIRECT_DOMAIN + '/payment_successful?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url=settings.REDIRECT_DOMAIN + '/payment_cancelled',
+        )
+        return redirect(checkout_session.url, code=303)
 
 
 ## use Stripe dummy card: 4242 4242 4242 4242

@@ -1,8 +1,5 @@
 from django.urls import path
-
-from applications.stripe import views
-from applications.stripe.views import ProductPageAPIView, PaymentSuccessfulAPIView, PaymentCancelledAPIView, \
-	StripeWebhookAPIView
+from applications.stripe.views import ProductPageAPIView, PaymentSuccessfulAPIView, PaymentCancelledAPIView, StripeWebhookAPIView
 
 urlpatterns = [
 	path('product_page/', ProductPageAPIView.as_view(), name='product_page'),
