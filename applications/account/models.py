@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser
@@ -82,13 +80,14 @@ class Profile(models.Model):
         TO_HAVE_A_FAN = 'HF', _('To have a fan')
         ONE_DATE = 'OD', _('One Date')
 
-    class Interests(models.TextChoices):
-        SPORT = 'SP', _('Sport')
-        ART = 'AT', _('Art')
-        MUSIC = 'MS', _('Music')
-        SELF_DEVELOPMENT = 'SD', _('Self development')
-        CREATION = 'CN', _('Creation')
-        ANOTHER = 'AR', _('Another')
+    INTERESTS = (
+        ('SP', 'Sport'),
+        ('AT', 'Art'),
+        ('MS', 'Music'),
+        ('SD', 'Self development'),
+        ('CN', 'Creation'),
+        ('AR', 'Another'),
+    )
 
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
@@ -98,10 +97,11 @@ class Profile(models.Model):
     sexual_orientation = models.CharField(max_length=2, choices=SexualOrientation.choices)
     description = models.TextField(max_length=200)
     status = models.CharField(max_length=2, choices=Status.choices)
-    interests = models.CharField(max_length=2, choices=Interests.choices)
+    interests = models.CharField(max_length=2, choices=INTERESTS)
 
     def __str__(self):
         return f'{self.user}: {self.age}'
+
 
 class Image(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='images')

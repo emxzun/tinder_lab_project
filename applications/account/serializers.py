@@ -1,4 +1,3 @@
-from datetime import date
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from applications.account.models import Profile, Image
@@ -39,12 +38,12 @@ class ImageSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    user = serializers.EmailField(required=False)
+    user = serializers.EmailField(required=False, read_only=True)
     images = ImageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Profile
-        fields = ['user', 'images', 'gender', 'sexual_orientation', 'description', 'status', 'interests', 'age', 'name', 'surname']
+        fields = '__all__'
 
     def create(self, validated_data):
         request = self.context.get('request')
