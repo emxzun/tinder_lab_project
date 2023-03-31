@@ -17,6 +17,7 @@ class RoomList(APIView):
         data = [{'name': room.name, 'slug': room.slug} for room in rooms]
         return Response(data)
 
+
 class RoomDetail(APIView):
     def get(self, request, slug):
         try:
