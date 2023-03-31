@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module type="PYTHON_MODULE" version="4">
-  <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/venv" />
-    </content>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <orderEntry type="jdk" jdkName="Python 3.8 (tinder)" jdkType="Python SDK" />
-=======
-    <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
->>>>>>> origin/production
-=======
-    <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
-=======
-    <orderEntry type="jdk" jdkName="Python 3.8 (tinder)" jdkType="Python SDK" />
->>>>>>> c1af10d8b7074fa8294831c64e5cf1ce46d4bd33
->>>>>>> 011fe3f0b76cc691eafda309603d4b126dde2db9
-    <orderEntry type="sourceFolder" forTests="false" />
+<module version="4">
+  <component name="PyDocumentationSettings">
+    <option name="format" value="PLAIN" />
+    <option name="myDocStringFormat" value="Plain" />
+  </component>
+  <component name="TestRunnerService">
+    <option name="PROJECT_TEST_RUNNER" value="py.test" />
   </component>
 </module>
