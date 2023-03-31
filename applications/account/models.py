@@ -58,7 +58,9 @@ class User(AbstractUser):
         self.activation_code = code
 
 
+
 class Profile(models.Model):
+
     class Gender(models.TextChoices):
         MALE = 'M', _('Male')
         FEMALE = 'F', _('Female')
